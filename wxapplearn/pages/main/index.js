@@ -5,14 +5,36 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    city:'南昌',
+    imgUrls: [
+      'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640',
+      'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640',
+      'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640'
+    ],
+    items:[],
+    indicatorDots:true,
+    indicatorColor:"#eee"
+    
   },
+
+
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // console.log(this.data.city)
+    let that = this
+    wx.request({
+      url:'https://www.easy-mock.com/mock/5ca466ee13e4cf68f04a4308/wx-maoyan',
+      success:function(res){
+        console.log(res)
+        that.setData({
+          items:res.data.data.movieList
+        })
+      }
 
+    })
   },
 
   /**
@@ -47,14 +69,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log(1234)   //在json里设置  "enablePullDownRefresh":true    若全部页面都实现这个下拉刷新   在app.json 里加这行代码
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    console.log(1)
   },
 
   /**
